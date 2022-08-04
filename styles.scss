@@ -34,3 +34,153 @@ body {
   background-color: #f3f4f6;
   color: $primary;
 }
+
+.form-container {
+  max-width: 960px;
+  margin: 1rem auto;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .message {
+    margin: 1em 0;
+    color: white;
+    padding: 1em;
+    text-align: center;
+    box-shadow: $shadow;
+
+    &.success-message {
+      background-color: $success;
+    }
+
+    &.remove-message {
+      background-color: $info;
+    }
+
+    &.alert-message {
+      background-color: $danger;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 1em 0;
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    padding: 0.5em;
+    flex: 1 1 100%;
+    font-family: inherit;
+    font-size: inherit;
+    color: $dark;
+    border: 2px solid rgba($info, 0.2);
+    border-radius: 6px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  button[type='submit'] {
+    background-color: $primary;
+    box-shadow: $shadow;
+    border: 3px solid transparent;
+    font-size: 1rem;
+    color: white;
+    padding: 0.3em 0.5em;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      background-color: rgba($dark, 0.9);
+      border: 3px solid rgba($info, 0.5);
+    }
+  }
+
+  &:focus {
+    outline: 1px solid $info;
+  }
+}
+
+.note-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2em auto 1em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+
+  .note {
+    flex: 0 1 24rem;
+    background-color: white;
+    padding: 1.5em;
+    border: 3px solid rgba($info, 0.2);
+    border-radius: 8px;
+    transition: $transition;
+
+    &:hover {
+      box-shadow: $shadow;
+    }
+
+    .note__title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5em;
+    }
+
+    .note__body {
+      font-size: 0.9rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      // chrome
+      --webkit-line-clamp: 4;
+    }
+
+    .note__btns {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5em;
+      margin-top: 1em;
+
+      .note__btn {
+        font-size: 0.8rem;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: $transition;
+
+        i {
+          pointer-events: none;
+        }
+
+        &:focus,
+        &:hover {
+          box-shadow: $shadow;
+        }
+
+        .note__view {
+          background-color: $primary;
+          box-shadow: $shadow rgba($primary, 0.2);
+        }
+        .note__delete {
+          background-color: $danger;
+          box-shadow: $shadow rgba($danger, 0.2);
+        }
+      }
+    }
+  }
+}

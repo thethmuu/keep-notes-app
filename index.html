@@ -18,10 +18,15 @@
   </head>
   <body>
     <!-- modal -->
-    
+    <dialog>
+      <button class="modal__btn">&times;</button>
+      <h2 class="modal__title">Title</h2>
+      <p class="modal__body">Note body</p>
+    </dialog>
     <!-- form -->
     <div class="form-container">
       <h1>Keep Notes</h1>
+      <div class="message alert-message">Hi!</div>
       <form>
         <input type="text" id="title" placeholder="Title" />
 
@@ -38,6 +43,18 @@
     </div>
     <div class="note-container">
       <!-- for prototype -->
+      <div class="note">
+        <h2 class="note__title">CSS Postion</h2>
+        <p class="note__body">relative</p>
+        <div class="note__btns">
+          <button class="note__btn note__view">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <button class="note__btn note__delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
       <div class="note">
         <h2 class="note__title">CSS Postion</h2>
         <p class="note__body">relative</p>
