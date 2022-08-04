@@ -82,6 +82,11 @@ body {
     color: $dark;
     border: 2px solid rgba($info, 0.2);
     border-radius: 6px;
+
+    &:hover,
+    &:focus {
+      outline: 2px solid rgba($info, 0.5);
+    }
   }
 
   textarea {
