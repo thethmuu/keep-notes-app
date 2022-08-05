@@ -1,4 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap");
+:root {
+  --bg-light: #f3f4f6;
+  --bg-dark: #1f2329;
+  --btn-light: ;
+  --btn-dark: ;
+  --text-light: ;
+  --text-dark: ;
+}
+
+[color-scheme=light] {
+  --bg-color: var(--bg-light);
+}
+
+[color-scheme=dark] {
+  --bg-color: var(--bg-dark);
+}
+
 *,
 *::after,
 *::before {
@@ -15,8 +32,25 @@ body {
   justify-content: center;
   align-items: center;
   padding: 2em;
-  background-color: #f3f4f6;
+  background-color: var(--bg-color);
   color: #444;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+nav .toggle-btn {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #555;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
 }
 
 .form-container {
