@@ -49,19 +49,34 @@ $transition: all 200ms ease-out;
 }
 
 body {
+  background-color: var(--bg-color);
   font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  display: flex;
+}
+
+.aside {
+  min-width: 20vw;
+  padding: 2em;
+  border-right: 1px solid rgba($light, 0.5);
+}
+
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2em;
-  background-color: var(--bg-color);
-  color: $primary;
 }
 
 nav {
+  width: 100%;
+  padding: 1em 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   .toggle-btn {
     background-color: var(--bg-color);
@@ -106,6 +121,23 @@ nav {
   }
 }
 
+input,
+textarea {
+  padding: 0.5em;
+  flex: 1 1 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  border: 2px solid rgba($info, 0.5);
+  border-radius: 6px;
+
+  &:hover,
+  &:focus {
+    outline: 2px solid rgba($info, 0.5);
+  }
+}
+
 .form-container {
   max-width: 960px;
   margin: 1rem auto;
@@ -143,23 +175,6 @@ nav {
     gap: 1em;
     margin: 1em 0;
     width: 100%;
-  }
-
-  input,
-  textarea {
-    padding: 0.5em;
-    flex: 1 1 100%;
-    font-family: inherit;
-    font-size: inherit;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    border: 2px solid rgba($info, 0.2);
-    border-radius: 6px;
-
-    &:hover,
-    &:focus {
-      outline: 2px solid rgba($info, 0.5);
-    }
   }
 
   textarea {
