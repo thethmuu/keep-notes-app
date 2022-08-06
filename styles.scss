@@ -5,8 +5,7 @@
   --bg-light: #f3f4f6;
   --bg-dark: #1f2329;
 
-  --btn-light: ;
-  --btn-dark: ;
+  --btn-color: #fbbc04;
 
   --text-light: #e8eaed;
   --text-dark: #444;
@@ -112,6 +111,7 @@ nav {
   margin: 1rem auto;
 
   h1 {
+    color: var(--text-color);
     font-size: 1.5rem;
     font-weight: normal;
     text-align: center;
