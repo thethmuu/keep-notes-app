@@ -4,9 +4,12 @@ const modal = document.querySelector('#modal');
 const form = document.querySelector('form');
 const titleInput = document.querySelector('#title');
 const toggleBtn = document.querySelector('.toggle-btn');
+const search = document.querySelector('#search');
+
 // notes
 let notes = [];
 let filteredNotes = [];
+
 // default theme
 let theme = 'light';
 function toggleTheme() {
@@ -14,6 +17,32 @@ function toggleTheme() {
   loadTheme();
 }
 
+// Class: for creating a  new  note
+class Note {
+  constructor(title, body) {
+    this.title = title;
+    this.body = body;
+    this.id = Math.floor(Math.random() * 2000);
+  }
+}
+
+// Event: filter on search
+search.addEventListener('keyup', filterNotes);
+
+function filterNotes() {
+  // check whether search string is included in note title and body
+  const searchTerm = search.value.toLowerCase();
+  const filterCondition = (note) =>
+    [note.title, note.body].join('').toLowerCase().includes(searchTerm);
+  filteredNotes = notes.filter(filterCondition);
+
+  noteContainer.innerHTML = '';
+  filteredNotes.forEach((note, index) => {
+    addNotetoList(note, index);
+  });
+}
+
+// theme
 function loadTheme() {
   const root = document.querySelector(':root');
   root.setAttribute('color-scheme', theme);
@@ -29,15 +58,6 @@ toggleBtn.addEventListener('click', () => {
   toggleTheme();
   localStorage.setItem('keep.theme', theme);
 });
-
-// Class: for creating a  new  note
-class Note {
-  constructor(title, body) {
-    this.title = title;
-    this.body = body;
-    this.id = Math.floor(Math.random() * 2000);
-  }
-}
 
 // Saving to localStorage
 // Function: Retreive notes from local storage
