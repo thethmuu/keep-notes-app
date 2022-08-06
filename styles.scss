@@ -125,7 +125,8 @@ nav {
 }
 
 input,
-textarea {
+textarea,
+select {
   padding: 0.5em;
   flex: 1 1 100%;
   font-family: inherit;
@@ -237,11 +238,13 @@ textarea {
     }
 
     .note__body {
-      font-size: 0.9rem;
+      line-height: 1.5;
+      -webkit-box-orient: vertical;
+      display: block;
+      display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
-      // chrome
-      --webkit-line-clamp: 4;
+      -webkit-line-clamp: 2;
     }
 
     .note__btns {
