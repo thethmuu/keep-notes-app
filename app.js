@@ -1,14 +1,13 @@
 // global selectors
 const noteContainer = document.querySelector('.note-container');
-const modal = document.querySelector('#modal');
-const search = document.querySelector('#search');
-const toggleBtn = document.querySelector('.toggle-btn');
+const categoryContainer = document.querySelector('.categories-container');
 
+const modal = document.querySelector('#modal');
 const form = document.querySelector('form');
 const titleInput = document.querySelector('#title');
-const noteInput = document.querySelector('#note');
-const categoryInput = document.querySelector('#categories');
-
+const toggleBtn = document.querySelector('.toggle-btn');
+const search = document.querySelector('#search');
+const categoriesInput = document.querySelector('#categories');
 // notes
 let notes = [];
 let filteredNotes = [];
@@ -28,17 +27,51 @@ const categories = [
 ];
 
 function showAllCategories() {
-  categories.forEach((item) => {
-    addCategoryToList(item);
+  categories.forEach((category) => {
+    addCategoryToList(category);
+    addCategoryToSidebar(category);
   });
 }
 
-function addCategoryToList(item) {
+function addCategoryToList(category) {
+  // <option value='1'>test</option>;
   const optionEl = document.createElement('option');
-  optionEl.setAttribute('value', item.id);
-  categoryInput.appendChild(optionEl);
-  optionEl.textContent = item.name;
-  console.log(optionEl);
+  optionEl.setAttribute('value', category.id);
+  optionEl.textContent = category.name;
+  categoriesInput.appendChild(optionEl);
+}
+
+function addCategoryToSidebar(category) {
+  const liEl = document.createElement('li');
+  liEl.classList.add('category-item');
+  liEl.innerHTML = `<span class="hidden-id" hidden>${category.id}</span>
+                    <span>${category.name}</span>`;
+  categoryContainer.appendChild(liEl);
+}
+
+search.addEventListener('keyup', filterNote);
+
+function filterNote() {
+  const searchTerm = search.value.toLowerCase();
+
+  filteredNotes = notes.filter((note) => {
+    return [note.title, note.body].join('').toLowerCase().includes(searchTerm);
+  });
+  console.log(filteredNotes);
+  noteContainer.innerHTML = '';
+  filteredNotes.forEach((note, index) => {
+    addNotetoList(note, index);
+  });
+}
+
+function filterNoteByCategory(id) {
+  console.log(notes);
+  let categorizedNote = notes.filter((note) => note.category === id);
+  console.log(categorizedNote);
+  noteContainer.innerHTML = '';
+  categorizedNote.forEach((note, index) => {
+    addNotetoList(note, index);
+  });
 }
 
 // default theme
@@ -48,33 +81,6 @@ function toggleTheme() {
   loadTheme();
 }
 
-// Class: for creating a  new  note
-class Note {
-  constructor(title, body, category) {
-    this.title = title;
-    this.body = body;
-    this.category = category;
-    this.id = Math.floor(Math.random() * 2000);
-  }
-}
-
-// Event: filter on search
-search.addEventListener('keyup', filterNotes);
-
-function filterNotes() {
-  // check whether search string is included in note title and body
-  const searchTerm = search.value.toLowerCase();
-  const filterCondition = (note) =>
-    [note.title, note.body].join('').toLowerCase().includes(searchTerm);
-  filteredNotes = notes.filter(filterCondition);
-
-  noteContainer.innerHTML = '';
-  filteredNotes.forEach((note, index) => {
-    addNotetoList(note, index);
-  });
-}
-
-// theme
 function loadTheme() {
   const root = document.querySelector(':root');
   root.setAttribute('color-scheme', theme);
@@ -90,6 +96,16 @@ toggleBtn.addEventListener('click', () => {
   toggleTheme();
   localStorage.setItem('keep.theme', theme);
 });
+
+// Class: for creating a  new  note
+class Note {
+  constructor(title, body, category) {
+    this.title = title;
+    this.body = body;
+    this.category = category;
+    this.id = Math.floor(Math.random() * 2000);
+  }
+}
 
 // Saving to localStorage
 // Function: Retreive notes from local storage
@@ -131,6 +147,7 @@ function addNotetoList(note, index = 1) {
   newUINote.innerHTML = `
         <span hidden>${note.id}</span>
         <h2 class="note__title">${note.title}</h2>
+        <span class="note__category">${note.category}</span>
         <p class="note__body">${note.body}</p>
         <div class="note__btns">
           <button class="note__btn note__view">
@@ -175,6 +192,14 @@ document.querySelector('.modal__btn').addEventListener('click', () => {
   modal.close();
 });
 
+// Event: sidebar category
+categoryContainer.addEventListener('click', (event) => {
+  const currentItem = event.target.closest('.category-item');
+  id = currentItem.querySelector('.hidden-id').textContent;
+  
+  filterNoteByCategory(id);
+});
+
 // Event: Note Buttons
 noteContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('note__view')) {
@@ -210,13 +235,14 @@ window.addEventListener('DOMContentLoaded', () => {
 // Event: Note Form Submit
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  console.log(categoriesInput.value);
+  const noteInput = document.querySelector('#note');
   //   console.log(noteInput.value);
   if (noteInput.value.length > 0 && titleInput.value.length > 0) {
-    console.log(categoryInput.value);
     const newNote = new Note(
       titleInput.value,
       noteInput.value,
-      categoryInput.value
+      categoriesInput.value
     );
     // add note to list
     addNotetoList(newNote);

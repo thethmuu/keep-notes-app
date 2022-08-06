@@ -52,7 +52,6 @@ $transition: all 200ms ease-out;
 }
 
 body {
-  height: 100vh;
   background-color: var(--bg-color);
   font-family: 'Roboto', sans-serif;
   color: var(--text-color);
@@ -63,6 +62,28 @@ body {
   min-width: 20vw;
   padding: 2em;
   border-right: 1px solid rgba($light, 0.5);
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .categories-container {
+    margin-top: 0.5em;
+
+    li {
+      list-style: none;
+      text-align: center;
+      font-weight: 500;
+      padding: 1em 0;
+      border-bottom: 1px solid rgba($light, 0.5);
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba($light, 0.5);
+      }
+    }
+  }
 }
 
 .container {
@@ -232,6 +253,14 @@ select {
       box-shadow: $shadow;
     }
 
+    .note__category {
+      background-color: rgba($info, 0.5);
+      padding: 2px 12px;
+      border-radius: 24px;
+      display: inline-block;
+      margin-bottom: 0.5em;
+    }
+
     .note__title {
       font-size: 1rem;
       font-weight: 500;
@@ -239,12 +268,12 @@ select {
     }
 
     .note__body {
-      line-height: 1.5;
       -webkit-box-orient: vertical;
       display: block;
       display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-clamp: 2;
       -webkit-line-clamp: 2;
     }
 

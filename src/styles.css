@@ -34,7 +34,6 @@
 }
 
 body {
-  height: 100vh;
   background-color: var(--bg-color);
   font-family: "Roboto", sans-serif;
   color: var(--text-color);
@@ -45,6 +44,25 @@ body {
   min-width: 20vw;
   padding: 2em;
   border-right: 1px solid rgba(204, 204, 204, 0.5);
+}
+.aside h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+.aside .categories-container {
+  margin-top: 0.5em;
+}
+.aside .categories-container li {
+  list-style: none;
+  text-align: center;
+  font-weight: 500;
+  padding: 1em 0;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.5);
+  cursor: pointer;
+}
+.aside .categories-container li:hover {
+  background-color: rgba(204, 204, 204, 0.5);
 }
 
 .container {
@@ -203,18 +221,25 @@ select:focus {
 .note-container .note:hover {
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
 }
+.note-container .note .note__category {
+  background-color: rgba(129, 202, 207, 0.5);
+  padding: 2px 12px;
+  border-radius: 24px;
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
 .note-container .note .note__title {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.5em;
 }
 .note-container .note .note__body {
-  line-height: 1.5;
   -webkit-box-orient: vertical;
   display: block;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
 }
 .note-container .note .note__btns {
