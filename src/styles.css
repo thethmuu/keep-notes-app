@@ -2,19 +2,22 @@
 :root {
   --bg-light: #f3f4f6;
   --bg-dark: #1f2329;
-  --btn-color: #fbbc04;
+  --btn-light: hsl(43, 96%, 56%);
+  --btn-dark: hsl(43, 96%, 40%);
   --text-light: #e8eaed;
-  --text-dark: #444;
+  --text-dark: #333;
 }
 
 [color-scheme=light] {
   --bg-color: var(--bg-light);
   --text-color: var(--text-dark);
+  --btn-color: var(--btn-light);
 }
 
 [color-scheme=dark] {
   --bg-color: var(--bg-dark);
   --text-color: var(--text-light);
+  --btn-color: var(--btn-dark);
 }
 
 *,
@@ -156,7 +159,7 @@ textarea:focus {
   resize: none;
 }
 .form-container button[type=submit] {
-  background-color: #444;
+  background-color: var(--btn-color);
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
   border: 3px solid transparent;
   border-radius: 6px;
@@ -178,7 +181,7 @@ textarea:focus {
 .note-container {
   width: 90%;
   max-width: 1200px;
-  margin: 2em auto 1em;
+  margin: 2em auto 4em;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

@@ -4,6 +4,9 @@ const modal = document.querySelector('#modal');
 const form = document.querySelector('form');
 const titleInput = document.querySelector('#title');
 const toggleBtn = document.querySelector('.toggle-btn');
+// notes
+let notes = [];
+let filteredNotes = [];
 // default theme
 let theme = 'light';
 function toggleTheme() {
@@ -39,10 +42,7 @@ class Note {
 // Saving to localStorage
 // Function: Retreive notes from local storage
 function getNotes() {
-  let notes;
-  if (localStorage.getItem('keep.notes') === null) {
-    notes = [];
-  } else {
+  if (localStorage.getItem('keep.notes')) {
     notes = JSON.parse(localStorage.getItem('keep.notes'));
   }
 

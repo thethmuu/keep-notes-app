@@ -5,10 +5,11 @@
   --bg-light: #f3f4f6;
   --bg-dark: #1f2329;
 
-  --btn-color: #fbbc04;
+  --btn-light: hsl(43, 96%, 56%);
+  --btn-dark: hsl(43, 96%, 40%);
 
   --text-light: #e8eaed;
-  --text-dark: #444;
+  --text-dark: #333;
 }
 
 $info: #81cacf;
@@ -21,11 +22,13 @@ $light: #ccc;
 [color-scheme='light'] {
   --bg-color: var(--bg-light);
   --text-color: var(--text-dark);
+  --btn-color: var(--btn-light);
 }
 
 [color-scheme='dark'] {
   --bg-color: var(--bg-dark);
   --text-color: var(--text-light);
+  --btn-color: var(--btn-dark);
 }
 
 // box shadow
@@ -182,7 +185,7 @@ textarea {
   }
 
   button[type='submit'] {
-    background-color: $primary;
+    background-color: var(--btn-color);
     box-shadow: $shadow;
     border: 3px solid transparent;
     border-radius: 6px;
@@ -208,7 +211,7 @@ textarea {
 .note-container {
   width: 90%;
   max-width: 1200px;
-  margin: 2em auto 1em;
+  margin: 2em auto 4em;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
