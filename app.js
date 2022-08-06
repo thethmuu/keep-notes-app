@@ -92,6 +92,7 @@ function loadTheme() {
 
 toggleBtn.addEventListener('click', () => {
   const sound = document.querySelector('.toggle-sound');
+  sound.currentTime = 0;
   sound.play();
   toggleTheme();
   localStorage.setItem('keep.theme', theme);
@@ -196,7 +197,7 @@ document.querySelector('.modal__btn').addEventListener('click', () => {
 categoryContainer.addEventListener('click', (event) => {
   const currentItem = event.target.closest('.category-item');
   id = currentItem.querySelector('.hidden-id').textContent;
-  
+
   filterNoteByCategory(id);
 });
 

@@ -62,6 +62,11 @@ body {
   min-width: 20vw;
   padding: 2em;
   border-right: 1px solid rgba($light, 0.5);
+  display: none;
+
+  @media (min-width: 640px) {
+    display: block;
+  }
   h1 {
     font-size: 1.2rem;
     font-weight: 500;
@@ -143,6 +148,15 @@ nav {
     background-color: white;
     font-size: 1.5rem;
     cursor: pointer;
+  }
+}
+
+#search {
+  border-radius: 24px;
+
+  @media (min-width: 640px) {
+    padding: 0.75em 1em;
+    min-width: 28rem;
   }
 }
 
