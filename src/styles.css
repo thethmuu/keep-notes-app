@@ -34,6 +34,7 @@
 }
 
 body {
+  height: 100vh;
   background-color: var(--bg-color);
   font-family: "Roboto", sans-serif;
   color: var(--text-color);
@@ -106,7 +107,8 @@ nav .toggle-btn {
 }
 
 input,
-textarea {
+textarea,
+select {
   padding: 0.5em;
   flex: 1 1 100%;
   font-family: inherit;
@@ -118,7 +120,9 @@ textarea {
 }
 input:hover, input:focus,
 textarea:hover,
-textarea:focus {
+textarea:focus,
+select:hover,
+select:focus {
   outline: 2px solid rgba(129, 202, 207, 0.5);
 }
 
@@ -205,10 +209,13 @@ textarea:focus {
   margin-bottom: 0.5em;
 }
 .note-container .note .note__body {
-  font-size: 0.9rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  --webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
 }
 .note-container .note .note__btns {
   display: flex;

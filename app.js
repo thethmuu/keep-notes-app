@@ -1,14 +1,45 @@
 // global selectors
 const noteContainer = document.querySelector('.note-container');
 const modal = document.querySelector('#modal');
+const search = document.querySelector('#search');
+const toggleBtn = document.querySelector('.toggle-btn');
+
 const form = document.querySelector('form');
 const titleInput = document.querySelector('#title');
-const toggleBtn = document.querySelector('.toggle-btn');
-const search = document.querySelector('#search');
+const noteInput = document.querySelector('#note');
+const categoryInput = document.querySelector('#categories');
 
 // notes
 let notes = [];
 let filteredNotes = [];
+const categories = [
+  {
+    id: 1,
+    name: 'coding',
+  },
+  {
+    id: 2,
+    name: 'personal',
+  },
+  {
+    id: 3,
+    name: 'idea',
+  },
+];
+
+function showAllCategories() {
+  categories.forEach((item) => {
+    addCategoryToList(item);
+  });
+}
+
+function addCategoryToList(item) {
+  const optionEl = document.createElement('option');
+  optionEl.setAttribute('value', item.id);
+  categoryInput.appendChild(optionEl);
+  optionEl.textContent = item.name;
+  console.log(optionEl);
+}
 
 // default theme
 let theme = 'light';
@@ -19,9 +50,10 @@ function toggleTheme() {
 
 // Class: for creating a  new  note
 class Note {
-  constructor(title, body) {
+  constructor(title, body, category) {
     this.title = title;
     this.body = body;
+    this.category = category;
     this.id = Math.floor(Math.random() * 2000);
   }
 }
@@ -168,6 +200,7 @@ noteContainer.addEventListener('click', (event) => {
 // Event: Display All Notes at app start
 window.addEventListener('DOMContentLoaded', () => {
   showAllNotes();
+  showAllCategories();
   if (localStorage.getItem('keep.theme')) {
     theme = localStorage.getItem('keep.theme');
   }
@@ -177,11 +210,14 @@ window.addEventListener('DOMContentLoaded', () => {
 // Event: Note Form Submit
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
-  const noteInput = document.querySelector('#note');
   //   console.log(noteInput.value);
   if (noteInput.value.length > 0 && titleInput.value.length > 0) {
-    const newNote = new Note(titleInput.value, noteInput.value);
+    console.log(categoryInput.value);
+    const newNote = new Note(
+      titleInput.value,
+      noteInput.value,
+      categoryInput.value
+    );
     // add note to list
     addNotetoList(newNote);
     // save to localStorage

@@ -52,6 +52,7 @@ $transition: all 200ms ease-out;
 }
 
 body {
+  height: 100vh;
   background-color: var(--bg-color);
   font-family: 'Roboto', sans-serif;
   color: var(--text-color);
