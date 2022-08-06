@@ -8,8 +8,16 @@ const toggleBtn = document.querySelector('.toggle-btn');
 let theme = 'light';
 function toggleTheme() {
   theme === 'light' ? (theme = 'dark') : (theme = 'light');
+  loadTheme();
+}
+
+function loadTheme() {
   const root = document.querySelector(':root');
   root.setAttribute('color-scheme', theme);
+  toggleBtn.innerHTML =
+    theme === 'light'
+      ? `<i class="fa-solid fa-lightbulb"></i>`
+      : `<i class="fa-solid fa-moon"></i>`;
 }
 
 toggleBtn.addEventListener('click', () => {
@@ -51,6 +59,7 @@ function saveNotetoLocalStorage(note) {
 // Function: remove a note  from local storage
 function removeNote(id) {
   let notes = getNotes();
+  console.log(typeof id);
   // notes = notes.filter((note) => note.id !== id);
   notes.forEach((note, index) => {
     if (note.id === id) {
@@ -62,9 +71,11 @@ function removeNote(id) {
 
 // UI UPDATES
 // Function: Create new note in UI
-function addNotetoList(note) {
+function addNotetoList(note, index = 1) {
   const newUINote = document.createElement('div');
   newUINote.classList.add('note');
+  newUINote.setAttribute('data-aos', 'fade-up');
+  newUINote.setAttribute('data-aos-delay', index * 100);
   newUINote.innerHTML = `
         <span hidden>${note.id}</span>
         <h2 class="note__title">${note.title}</h2>
@@ -85,8 +96,8 @@ function addNotetoList(note) {
 function showAllNotes() {
   let notes = getNotes();
 
-  notes.forEach((note) => {
-    addNotetoList(note);
+  notes.forEach((note, index) => {
+    addNotetoList(note, index);
   });
 }
 
@@ -130,7 +141,7 @@ noteContainer.addEventListener('click', (event) => {
     showAlertMessage('Note deleted successfully', 'remove-message');
     const id = currentNote.querySelector('span').textContent;
     console.log(id);
-    removeNote(id);
+    removeNote(Number(id));
   }
 });
 
@@ -140,10 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('keep.theme')) {
     theme = localStorage.getItem('keep.theme');
   }
-  toggleBtn.innerHTML =
-    theme === 'light'
-      ? `<i class="fa-solid fa-lightbulb"></i>`
-      : `<i class="fa-solid fa-moon"></i>`;
+  loadTheme();
 });
 
 // Event: Note Form Submit

@@ -8,8 +8,8 @@
   --btn-light: ;
   --btn-dark: ;
 
-  --text-light: ;
-  --text-dark: ;
+  --text-light: #e8eaed;
+  --text-dark: #444;
 }
 
 $info: #81cacf;
@@ -21,10 +21,12 @@ $light: #ccc;
 
 [color-scheme='light'] {
   --bg-color: var(--bg-light);
+  --text-color: var(--text-dark);
 }
 
 [color-scheme='dark'] {
   --bg-color: var(--bg-dark);
+  --text-color: var(--text-light);
 }
 
 // box shadow
@@ -41,6 +43,10 @@ $transition: all 200ms ease-out;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+* {
+  transition: all 200ms cubic-bezier(0.17, 0.67, 0.89, 0.54);
 }
 
 body {
@@ -68,6 +74,36 @@ nav {
     cursor: pointer;
     display: grid;
     place-items: center;
+  }
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  min-width: 30rem;
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: 8px;
+  padding: 2em;
+
+  &::backdrop {
+    background-color: rgba(0 0 0 / 0.4);
+  }
+
+  .modal__title {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+  }
+
+  .modal__btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 }
 
@@ -115,7 +151,8 @@ nav {
     flex: 1 1 100%;
     font-family: inherit;
     font-size: inherit;
-    color: $dark;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     border: 2px solid rgba($info, 0.2);
     border-radius: 6px;
 
@@ -164,7 +201,8 @@ nav {
 
   .note {
     flex: 0 1 24rem;
-    background-color: white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     padding: 1.5em;
     border: 3px solid rgba($info, 0.2);
     border-radius: 8px;
