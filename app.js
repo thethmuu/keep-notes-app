@@ -148,7 +148,6 @@ function addNotetoList(note, index = 1) {
   newUINote.innerHTML = `
         <span hidden>${note.id}</span>
         <h2 class="note__title">${note.title}</h2>
-        <span class="note__category">${note.category}</span>
         <p class="note__body">${note.body}</p>
         <div class="note__btns">
           <button class="note__btn note__view">
