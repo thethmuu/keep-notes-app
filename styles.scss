@@ -61,7 +61,7 @@ body {
 
 .aside {
   min-width: 20vw;
-  padding: 2em;
+  padding: 2em 0;
   border-right: 1px solid rgba($light, 0.5);
   display: none;
 
@@ -80,7 +80,7 @@ body {
     li {
       list-style: none;
       text-align: center;
-      font-weight: 500;
+      font-weight: 400;
       padding: 1em 0;
       border-bottom: 1px solid rgba($light, 0.5);
       cursor: pointer;
@@ -133,7 +133,10 @@ nav {
   transform: translateX(-50%);
   width: 90%;
   max-height: 80vh;
+  color: var(--text-color);
+  background-color: var(--bg-color);
   overflow: auto;
+  border: 2px solid rgba($info, 0.2);
   border-radius: 8px;
   padding: 2em;
 
@@ -154,7 +157,8 @@ nav {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    background-color: white;
+    color: inherit;
+    background-color: transparent;
     font-size: 1.5rem;
     cursor: pointer;
   }

@@ -34,7 +34,6 @@ function showAllCategories() {
 }
 
 function addCategoryToList(category) {
-  // <option value='1'>test</option>;
   const optionEl = document.createElement('option');
   optionEl.setAttribute('value', category.id);
   optionEl.textContent = category.name;
@@ -57,7 +56,7 @@ function filterNote() {
   filteredNotes = notes.filter((note) => {
     return [note.title, note.body].join('').toLowerCase().includes(searchTerm);
   });
-  console.log(filteredNotes);
+
   noteContainer.innerHTML = '';
   filteredNotes.forEach((note, index) => {
     addNotetoList(note, index);
@@ -65,9 +64,8 @@ function filterNote() {
 }
 
 function filterNoteByCategory(id) {
-  console.log(notes);
   let categorizedNote = notes.filter((note) => note.category === id);
-  console.log(categorizedNote);
+
   noteContainer.innerHTML = '';
   categorizedNote.forEach((note, index) => {
     addNotetoList(note, index);
@@ -128,14 +126,8 @@ function saveNotetoLocalStorage(note) {
 // Function: remove a note  from local storage
 function removeNote(id) {
   let notes = getNotes();
-  console.log(typeof id);
-  // notes = notes.filter((note) => note.id !== id);
-  notes.forEach((note, index) => {
-    if (note.id === id) {
-      notes.splice(index, 1);
-    }
-    localStorage.setItem('keep.notes', JSON.stringify(notes));
-  });
+  notes = notes.filter((note) => note.id !== id);
+  localStorage.setItem('keep.notes', JSON.stringify(notes));
 }
 
 // UI UPDATES
@@ -205,7 +197,7 @@ noteContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('note__view')) {
     // trigger modal
     const currentNote = event.target.closest('.note');
-    console.log(currentNote);
+
     const title = currentNote.querySelector('.note__title').textContent;
     const body = currentNote.querySelector('.note__body').textContent;
     // open modal with data
@@ -217,7 +209,7 @@ noteContainer.addEventListener('click', (event) => {
     currentNote.remove();
     showAlertMessage('Note deleted successfully', 'remove-message');
     const id = currentNote.querySelector('span').textContent;
-    console.log(id);
+
     removeNote(Number(id));
   }
 });
@@ -235,9 +227,9 @@ window.addEventListener('DOMContentLoaded', () => {
 // Event: Note Form Submit
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log(categoriesInput.value);
+
   const noteInput = document.querySelector('#note');
-  //   console.log(noteInput.value);
+
   if (noteInput.value.length > 0 && titleInput.value.length > 0) {
     const newNote = new Note(
       titleInput.value,
