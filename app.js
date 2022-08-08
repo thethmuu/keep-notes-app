@@ -5,6 +5,7 @@ const categoryContainer = document.querySelector('.categories-container');
 const modal = document.querySelector('#modal');
 const form = document.querySelector('form');
 const titleInput = document.querySelector('#title');
+const noteInput = document.querySelector('#note');
 const toggleBtn = document.querySelector('.toggle-btn');
 const search = document.querySelector('#search');
 const categoriesInput = document.querySelector('#categories');
@@ -197,7 +198,6 @@ noteContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('note__view')) {
     // trigger modal
     const currentNote = event.target.closest('.note');
-
     const title = currentNote.querySelector('.note__title').textContent;
     const body = currentNote.querySelector('.note__body').textContent;
     // open modal with data
@@ -229,8 +229,6 @@ window.addEventListener('DOMContentLoaded', () => {
 // Event: Note Form Submit
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
-  const noteInput = document.querySelector('#note');
 
   if (noteInput.value.length > 0 && titleInput.value.length > 0) {
     const newNote = new Note(

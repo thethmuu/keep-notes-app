@@ -54,6 +54,7 @@ $transition: all 200ms ease-out;
 
 body {
   background-color: var(--bg-color);
+  min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   color: var(--text-color);
   display: flex;
@@ -99,7 +100,6 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -249,7 +249,7 @@ select {
     &:hover,
     &:focus {
       box-shadow: none;
-      background-color: rgba($dark, 0.9);
+      opacity: 0.8;
       border: 3px solid rgba($info, 0.5);
     }
   }
