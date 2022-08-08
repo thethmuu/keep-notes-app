@@ -206,11 +206,13 @@ noteContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('note__delete')) {
     // trigger delete fun
     const currentNote = event.target.closest('.note');
-    currentNote.remove();
-    showAlertMessage('Note deleted successfully', 'remove-message');
     const id = currentNote.querySelector('span').textContent;
-
-    removeNote(Number(id));
+    const confirmDelete = confirm('Sure to delete the note?');
+    if (confirmDelete) {
+      currentNote.remove();
+      removeNote(Number(id));
+      showAlertMessage('Note deleted successfully', 'remove-message');
+    }
   }
 });
 
