@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="images/google-keep.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="src/styles.css" />
     <!-- font-awesome -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
@@ -14,42 +20,15 @@
       referrerpolicy="no-referrer"
     />
     <script defer src="app.js"></script>
+
     <title>Keep Notes</title>
   </head>
   <body>
-    <!-- modal -->
-    
-    <!-- form -->
-    <div class="form-container">
-      <h1>Keep Notes</h1>
-      <form>
-        <input type="text" id="title" placeholder="Title" />
+    //
 
-        <textarea
-          type="text"
-          id="note"
-          cols="30"
-          rows="5"
-          placeholder="Take a note...`"
-        ></textarea>
-
-        <button type="submit">Save</button>
-      </form>
-    </div>
-    <div class="note-container">
-      <!-- for prototype -->
-      <div class="note">
-        <h2 class="note__title">CSS Postion</h2>
-        <p class="note__body">relative</p>
-        <div class="note__btns">
-          <button class="note__btn note__view">
-            <i class="fa-solid fa-eye"></i>
-          </button>
-          <button class="note__btn note__delete">
-            <i class="fa-solid fa-trash"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
